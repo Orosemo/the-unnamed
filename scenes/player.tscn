@@ -1104,14 +1104,21 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Camera2D/CanvasLayer/inv/CenterContainer/Control" unique_id=829946825]
-layout_mode = 0
+z_index = 1
+custom_minimum_size = Vector2(500, 400)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 horizontal_scroll_mode = 0
 
 [node name="GridContainer" type="GridContainer" parent="Camera2D/CanvasLayer/inv/CenterContainer/Control/ScrollContainer" unique_id=2088289640]
 layout_mode = 2
 theme_override_constants/h_separation = 12
 theme_override_constants/v_separation = 12
-columns = 6
+columns = 10
 script = ExtResource("24_ujl30")
 generate = true
 space_size = 32

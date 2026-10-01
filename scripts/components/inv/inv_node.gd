@@ -58,18 +58,19 @@ func load_inv(inv_data: Dictionary):
 		var space: InvSpace = inv[space_id]
 
 		if space.generate:
-			get_tree().call_group("slot", "queue_free")
+			for slot_node: InvSlot in space.inv_slots:
+				slot_node.queue_free()
 			space.inv_slots.clear()
 
-			var saved_array: Array = inv_data[space_id]["Array"]
-			var size: int = inv_data[space_id]["size"]
+			var saved_array: Array = inv_data[space_id].get("Array", [])
+			var slot_count: int = max(space.space_size, saved_array.size())
 
-			for item in saved_array:
+			for i in slot_count:
 				var slot_node = preload("res://scenes/prefabs/inv_slot.tscn").instantiate()
 				slot_node.generated_slot = true
 
-				if item != null:
-					var slot_data = item
+				if i < saved_array.size() and saved_array[i] != null:
+					var slot_data: Dictionary = saved_array[i]
 
 					var slot_res := Slot.new()
 					slot_res.amount = slot_data["amount"]

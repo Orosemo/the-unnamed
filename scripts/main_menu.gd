@@ -8,7 +8,7 @@ func _ready() -> void:
 	continue_button.grab_focus()
 	version.text = ProjectSettings.get_setting("application/config/version")
 
-	var path = "user://savegame_%s.save" % GlobalVars.save_slot
+	var path = "user://saves/savegame_%s.save" % GlobalVars.save_slot
 
 	continue_button.disabled = !FileAccess.file_exists(path)
 
@@ -19,7 +19,7 @@ func _on_continue_pressed() -> void:
 
 
 func _on_new_game_pressed() -> void:
-	DirAccess.remove_absolute("user://savegame_%s.save" % GlobalVars.save_slot)
+	DirAccess.remove_absolute("user://saves/savegame_%s.save" % GlobalVars.save_slot)
 	TransitionManager.transition("res://scenes/test_env.tscn")
 
 
