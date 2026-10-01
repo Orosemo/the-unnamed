@@ -1103,8 +1103,26 @@ layout_mode = 2
 [node name="Control" type="Control" parent="Camera2D/CanvasLayer/inv/CenterContainer" unique_id=1658784392]
 layout_mode = 2
 
+[node name="NinePatchRect" type="NinePatchRect" parent="Camera2D/CanvasLayer/inv/CenterContainer/Control" unique_id=905232280]
+custom_minimum_size = Vector2(500, 400)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_top = -200.0
+offset_right = 250.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("23_4ni07")
+region_rect = Rect2(0, 0, 16, 16)
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
 [node name="ScrollContainer" type="ScrollContainer" parent="Camera2D/CanvasLayer/inv/CenterContainer/Control" unique_id=829946825]
-z_index = 1
 custom_minimum_size = Vector2(500, 400)
 layout_mode = 1
 anchors_preset = 15
@@ -1122,21 +1140,6 @@ columns = 10
 script = ExtResource("24_ujl30")
 generate = true
 space_size = 32
-
-[node name="NinePatchRect" type="NinePatchRect" parent="Camera2D/CanvasLayer/inv/CenterContainer/Control" unique_id=905232280]
-custom_minimum_size = Vector2(500, 400)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("23_4ni07")
-region_rect = Rect2(0, 0, 16, 16)
-patch_margin_left = 10
-patch_margin_top = 10
-patch_margin_right = 10
-patch_margin_bottom = 10
 
 [node name="dropped_items" type="Control" parent="Camera2D/CanvasLayer/inv" unique_id=1304480765]
 layout_mode = 2
