@@ -3,7 +3,6 @@ class_name InvSlot
 
 @export var slot: Slot = Slot.new()
 @export var equipment: bool
-@export var generated_slot: bool
 @export_enum("consumable", "weapon", "usable", "misc") var type
 
 @onready var bg: InvSlot = $"."
@@ -77,10 +76,7 @@ func populate():
 
 func _ready() -> void:
 	populate()
-	if generated_slot:
-		add_to_group("persistent_slot")
-	else:
-		add_to_group("slot")
+	add_to_group("slot")
 
 func _process(delta: float) -> void:
 	populate()

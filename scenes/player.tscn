@@ -26,10 +26,6 @@
 [ext_resource type="Script" uid="uid://frarqffumwwk" path="res://scripts/ui_manager.gd" id="22_wnwbv"]
 [ext_resource type="Texture2D" uid="uid://c1owohp51ammu" path="res://assets/inv_boxes.png" id="23_4ni07"]
 [ext_resource type="Script" uid="uid://caoeks3dhwgnn" path="res://scripts/components/inv/inv_space.gd" id="24_ujl30"]
-[ext_resource type="PackedScene" uid="uid://vqs5hny4v0m" path="res://scenes/prefabs/inv_slot.tscn" id="25_ujl30"]
-[ext_resource type="Resource" uid="uid://cera02o4oon6y" path="res://resources/items/bomb.tres" id="28_dt7fs"]
-[ext_resource type="Resource" uid="uid://c2wmxu4tw8pya" path="res://resources/items/slime.tres" id="28_wqfne"]
-[ext_resource type="Script" uid="uid://bv1ryhjb5fibb" path="res://scripts/resources/slot.gd" id="29_wqfne"]
 [ext_resource type="Theme" uid="uid://blfjvrqfqh4rr" path="res://UI/button/default.tres" id="31_wnwbv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i4ail"]
@@ -527,18 +523,6 @@ region = Rect2(7, 12, 162, 27)
 [sub_resource type="AtlasTexture" id="AtlasTexture_770dr"]
 atlas = ExtResource("22_a38lo")
 region = Rect2(7, 60, 162, 27)
-
-[sub_resource type="Resource" id="Resource_gl8cc"]
-script = ExtResource("29_wqfne")
-amount = 2
-item = ExtResource("28_wqfne")
-metadata/_custom_type_script = "uid://bv1ryhjb5fibb"
-
-[sub_resource type="Resource" id="Resource_wnwbv"]
-script = ExtResource("29_wqfne")
-amount = 3
-item = ExtResource("28_dt7fs")
-metadata/_custom_type_script = "uid://bv1ryhjb5fibb"
 
 [sub_resource type="Animation" id="Animation_wqfne"]
 length = 0.001
@@ -1138,7 +1122,6 @@ theme_override_constants/h_separation = 12
 theme_override_constants/v_separation = 12
 columns = 10
 script = ExtResource("24_ujl30")
-generate = true
 space_size = 32
 
 [node name="dropped_items" type="Control" parent="Camera2D/CanvasLayer/inv" unique_id=1304480765]
@@ -1223,7 +1206,7 @@ patch_margin_top = 10
 patch_margin_right = 10
 patch_margin_bottom = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Camera2D/CanvasLayer/inv/hotbar" unique_id=1539343620 node_paths=PackedStringArray("inv_slots")]
+[node name="HBoxContainer" type="HBoxContainer" parent="Camera2D/CanvasLayer/inv/hotbar" unique_id=1539343620]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1239,24 +1222,7 @@ grow_vertical = 2
 theme_override_constants/separation = 19
 alignment = 1
 script = ExtResource("24_ujl30")
-inv_slots = [NodePath("inv_slot"), NodePath("inv_slot2"), NodePath("inv_slot3"), NodePath("inv_slot4"), NodePath("inv_slot5")]
-
-[node name="inv_slot" parent="Camera2D/CanvasLayer/inv/hotbar/HBoxContainer" unique_id=1317366277 groups=["persistent_slot"] instance=ExtResource("25_ujl30")]
-layout_mode = 2
-
-[node name="inv_slot2" parent="Camera2D/CanvasLayer/inv/hotbar/HBoxContainer" unique_id=1818231737 groups=["persistent_slot"] instance=ExtResource("25_ujl30")]
-layout_mode = 2
-
-[node name="inv_slot3" parent="Camera2D/CanvasLayer/inv/hotbar/HBoxContainer" unique_id=2077944143 groups=["persistent_slot"] instance=ExtResource("25_ujl30")]
-layout_mode = 2
-
-[node name="inv_slot4" parent="Camera2D/CanvasLayer/inv/hotbar/HBoxContainer" unique_id=1623097604 groups=["persistent_slot"] instance=ExtResource("25_ujl30")]
-layout_mode = 2
-slot = SubResource("Resource_gl8cc")
-
-[node name="inv_slot5" parent="Camera2D/CanvasLayer/inv/hotbar/HBoxContainer" unique_id=255718256 groups=["persistent_slot"] instance=ExtResource("25_ujl30")]
-layout_mode = 2
-slot = SubResource("Resource_wnwbv")
+space_size = 5
 
 [node name="menu_blend" type="ColorRect" parent="Camera2D/CanvasLayer" unique_id=1116665265]
 anchors_preset = 15

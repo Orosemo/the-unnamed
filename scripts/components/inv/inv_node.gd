@@ -12,16 +12,11 @@ func save() -> Dictionary:
 	for space_id in inv:
 		var space: InvSpace = inv[space_id]
 
-		# generates data structure depending on inv type
-		if space.generate:
-			inv_data[space_id] = {
-				"size": space.space_size,
-				"Array": []
-			}
-			inv_data[space_id]["Array"].resize(space.space_size)
-		else:
-			inv_data[space_id] = []
-			inv_data[space_id].resize(space.inv_slots.size())
+		inv_data[space_id] = {
+			"size": space.space_size,
+			"Array": []
+		}
+		inv_data[space_id]["Array"].resize(space.space_size)
 
 		for i in range(space.inv_slots.size()):
 			var inv_slot: InvSlot = space.inv_slots[i]
@@ -43,8 +38,6 @@ func save() -> Dictionary:
 			# determines saving location
 			if space.generate:
 				inv_data[space_id]["Array"][i] = item_data
-			else:
-				inv_data[space_id][i] = item_data
 
 	return inv_data
 
@@ -86,23 +79,3 @@ func load_inv(inv_data: Dictionary):
 				slot_node.add_to_group("slot")
 				space.add_child(slot_node)
 				space.inv_slots.append(slot_node)
-
-		else:
-			var saved_array: Array = inv_data[space_id]
-
-			for slot in space.inv_slots:
-				if slot == null:
-					continue
-
-				print("save data:")
-				print(saved_array)
-
-				var slot_node: InvSlot = slot
-				var slot_data = saved_array[]
-
-				var slot_res := Slot.new()
-				slot_res.amount = slot_data["amount"]
-				slot_res.item = load(slot_data["item"])
-
-				slot_node.slot = slot_res
-				slot_node.generated_slot = false
