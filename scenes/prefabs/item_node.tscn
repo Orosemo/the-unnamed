@@ -1,13 +1,17 @@
 [gd_scene format=3 uid="uid://dcyb7rjyndnxo"]
 
-[ext_resource type="Texture2D" uid="uid://cs86dhhd3nsny" path="res://assets/atlas/items/rarities/rare.tres" id="1_gigwu"]
 [ext_resource type="Script" uid="uid://blu6hs51s53hn" path="res://scripts/item_node.gd" id="1_js0ma"]
 [ext_resource type="Texture2D" uid="uid://coik1bp3dcr2v" path="res://assets/atlas/items/bomb.tres" id="2_js0ma"]
+[ext_resource type="Texture2D" uid="uid://dq0lxtqm68fbd" path="res://assets/items.png" id="2_slgdn"]
 [ext_resource type="Texture2D" uid="uid://dcnt2goyjrqnk" path="res://assets/light/32x32 textures (60).png" id="3_slgdn"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_js0ma"]
 rough = true
 absorbent = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iwlds"]
+atlas = ExtResource("2_slgdn")
+region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gigwu"]
 radius = 18.027756
@@ -16,6 +20,7 @@ radius = 18.027756
 radius = 19.026299
 
 [node name="item" type="RigidBody2D" unique_id=380949591]
+scale = Vector2(0.1, 0.1)
 collision_layer = 32
 collision_mask = 33
 physics_material_override = SubResource("PhysicsMaterial_js0ma")
@@ -23,18 +28,18 @@ script = ExtResource("1_js0ma")
 
 [node name="bg" type="Sprite2D" parent="." unique_id=755191591]
 modulate = Color(1, 1, 1, 0.39215687)
-texture = ExtResource("1_gigwu")
+texture = SubResource("AtlasTexture_iwlds")
 
 [node name="item" type="Sprite2D" parent="." unique_id=1437403853]
 texture = ExtResource("2_js0ma")
 
 [node name="light" type="PointLight2D" parent="." unique_id=379737186]
-energy = 0.68
+color = Color(1, 0, 0, 0.56078434)
+energy = 1.55
 shadow_enabled = true
 shadow_filter = 2
-shadow_filter_smooth = 21.2
 texture = ExtResource("3_slgdn")
-texture_scale = 5.92
+texture_scale = 2.65
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1215068924]
 shape = SubResource("CircleShape2D_gigwu")
@@ -44,6 +49,3 @@ collision_layer = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1889788386]
 shape = SubResource("CircleShape2D_js0ma")
-
-[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=344030005]
-color = Color(0.18721315, 0.14590305, 0.15719628, 1)

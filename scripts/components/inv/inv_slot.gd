@@ -43,12 +43,16 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 		data.amount = 0
 		data.item = null
 	else:
-		var new_amount = data.amount
-		var new_item = data.item
-		data.amount = slot.amount
-		data.item = slot.item
-		slot.amount = new_amount
-		slot.item = new_item
+		if slot.item == data.item:
+			slot.amount += data.amount
+		else:
+			var new_amount = data.amount
+			var new_item = data.item
+			data.amount = slot.amount
+			data.item = slot.item
+			slot.amount = new_amount
+			slot.item = new_item
+			
 	populate()
 	
 

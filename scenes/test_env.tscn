@@ -148,7 +148,6 @@ texture = ExtResource("13_mgaop")
 color = Color(0.28852558, 0.47366595, 0.54164904, 1)
 
 [node name="item" parent="." unique_id=380949591 instance=ExtResource("9_u72b4")]
-visible = false
 position = Vector2(310, 15)
 item = ExtResource("10_douh2")
 

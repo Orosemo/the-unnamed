@@ -9,7 +9,7 @@ extends RigidBody2D
 func update():
 	bg.texture = load(GlobalAssets.rarities[item.rarity])
 	item_node.texture = item.icon
-	light.color = Color(229, 28, 35, 255)
+	light.color = GlobalAssets.rarities_lights[item.rarity]
 
 func _ready() -> void:
 	if item:
