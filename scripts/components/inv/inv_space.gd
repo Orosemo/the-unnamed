@@ -5,6 +5,8 @@ class_name InvSpace
 @export var space_size : int
 @export var expanding: bool
 
+@onready var status_message_box = $"../../../../../hud/StatusMessageBox"
+
 func _ready() -> void:
 	if !expanding:
 		_create_generated_slots(space_size)
@@ -28,3 +30,5 @@ func add(item: Slot):
 		inv_slots[position] = InvSlot.new()
 		inv_slots[position].slot = item
 		space_size = inv_slots.size()
+	else:
+		status_message_box.add_message("NO SPACE")

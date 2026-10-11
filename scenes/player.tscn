@@ -27,6 +27,7 @@
 [ext_resource type="Script" uid="uid://frarqffumwwk" path="res://scripts/ui_manager.gd" id="22_wnwbv"]
 [ext_resource type="Texture2D" uid="uid://c1owohp51ammu" path="res://assets/inv_boxes.png" id="23_4ni07"]
 [ext_resource type="Script" uid="uid://caoeks3dhwgnn" path="res://scripts/components/inv/inv_space.gd" id="24_ujl30"]
+[ext_resource type="Script" uid="uid://cp2l3xx0majj3" path="res://scripts/components/status_message_box.gd" id="26_dt7fs"]
 [ext_resource type="Theme" uid="uid://blfjvrqfqh4rr" path="res://UI/button/default.tres" id="31_wnwbv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i4ail"]
@@ -1072,6 +1073,14 @@ theme_override_constants/h_separation = 35
 theme_override_constants/v_separation = 35
 columns = 3
 
+[node name="StatusMessageBox" type="VBoxContainer" parent="Camera2D/CanvasLayer/hud" unique_id=178061595]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("26_dt7fs")
+label = "scenes\\status_messages\\interaction_message.tscn"
+duration = 5.0
+
 [node name="inv_blend" type="ColorRect" parent="Camera2D/CanvasLayer" unique_id=457686663]
 anchors_preset = 15
 anchor_right = 1.0
@@ -1093,7 +1102,7 @@ theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 script = ExtResource("22_ke2ow")
 inv = {
-"main_inv": NodePath("CenterContainer/Control/ScrollContainer/GridContainer")
+"main_inv": NodePath("CenterContainer/Control/ScrollContainer/InvContainer")
 }
 cathegory = Array[String](["main_inv"])
 
@@ -1132,13 +1141,13 @@ grow_horizontal = 2
 grow_vertical = 2
 horizontal_scroll_mode = 0
 
-[node name="GridContainer" type="GridContainer" parent="Camera2D/CanvasLayer/inv/CenterContainer/Control/ScrollContainer" unique_id=2088289640]
+[node name="InvContainer" type="GridContainer" parent="Camera2D/CanvasLayer/inv/CenterContainer/Control/ScrollContainer" unique_id=2088289640]
 layout_mode = 2
 theme_override_constants/h_separation = 12
 theme_override_constants/v_separation = 12
 columns = 10
 script = ExtResource("24_ujl30")
-expanding = true
+space_size = 4
 
 [node name="menu_blend" type="ColorRect" parent="Camera2D/CanvasLayer" unique_id=1116665265]
 anchors_preset = 15
