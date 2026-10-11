@@ -1,9 +1,12 @@
 [gd_scene format=3 uid="uid://dcyb7rjyndnxo"]
 
-[ext_resource type="Script" uid="uid://blu6hs51s53hn" path="res://scripts/item_node.gd" id="1_js0ma"]
+[ext_resource type="Script" uid="uid://bib68wjpdavqn" path="res://scripts/item_node.gd" id="1_js0ma"]
 [ext_resource type="Texture2D" uid="uid://coik1bp3dcr2v" path="res://assets/atlas/items/bomb.tres" id="2_js0ma"]
 [ext_resource type="Texture2D" uid="uid://dq0lxtqm68fbd" path="res://assets/items.png" id="2_slgdn"]
 [ext_resource type="Texture2D" uid="uid://dcnt2goyjrqnk" path="res://assets/light/32x32 textures (60).png" id="3_slgdn"]
+[ext_resource type="Script" uid="uid://cu42a10k1vww6" path="res://scripts/prefabs/item_collider.gd" id="5_gkvdr"]
+[ext_resource type="LabelSettings" uid="uid://bn0fq2rjj4vjs" path="res://UI/label/default.tres" id="5_slgdn"]
+[ext_resource type="FontFile" uid="uid://dfeuqwuwvbjkg" path="res://assets/fonts/ka1.ttf" id="6_iwlds"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_js0ma"]
 rough = true
@@ -19,10 +22,64 @@ radius = 18.027756
 [sub_resource type="CircleShape2D" id="CircleShape2D_js0ma"]
 radius = 19.026299
 
+[sub_resource type="LabelSettings" id="LabelSettings_gkvdr"]
+font = ExtResource("6_iwlds")
+font_size = 15
+
+[sub_resource type="Animation" id="Animation_gkvdr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_d1163"]
+resource_name = "exit"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.53333336),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4vkqi"]
+_data = {
+&"RESET": SubResource("Animation_gkvdr"),
+&"exit": SubResource("Animation_d1163")
+}
+
 [node name="item" type="RigidBody2D" unique_id=380949591]
 scale = Vector2(0.1, 0.1)
-collision_layer = 32
-collision_mask = 33
+collision_layer = 64
 physics_material_override = SubResource("PhysicsMaterial_js0ma")
 script = ExtResource("1_js0ma")
 
@@ -45,7 +102,31 @@ texture_scale = 2.65
 shape = SubResource("CircleShape2D_gigwu")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=235578546]
-collision_layer = 32
+collision_layer = 64
+collision_mask = 8
+script = ExtResource("5_gkvdr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1889788386]
 shape = SubResource("CircleShape2D_js0ma")
+
+[node name="amount" type="Label" parent="." unique_id=504605520]
+offset_left = 4.5148273
+offset_top = -17.037083
+offset_right = 44.514828
+offset_bottom = 5.9629173
+text = "1"
+label_settings = ExtResource("5_slgdn")
+
+[node name="interact" type="Label" parent="." unique_id=1254140646]
+offset_left = -7.6666946
+offset_top = -36.11861
+offset_right = 50.30742
+offset_bottom = -3.2371063
+text = "F"
+label_settings = SubResource("LabelSettings_gkvdr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1949197749]
+libraries/ = SubResource("AnimationLibrary_4vkqi")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

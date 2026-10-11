@@ -45,6 +45,8 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 	else:
 		if slot.item == data.item:
 			slot.amount += data.amount
+			data.amount = 0
+			data.item = null	
 		else:
 			var new_amount = data.amount
 			var new_item = data.item

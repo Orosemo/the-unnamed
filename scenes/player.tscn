@@ -21,6 +21,7 @@
 [ext_resource type="Script" uid="uid://vrs1twpulcy0" path="res://addons/PaletteSwapShader/PaletteMaterial.gd" id="13_qfm1y"]
 [ext_resource type="Script" uid="uid://c8ikdt1ttmmku" path="res://scripts/components/effect_particles.gd" id="14_f1ej7"]
 [ext_resource type="PackedScene" uid="uid://bhrnihg27hnnh" path="res://scenes/prefabs/effect_particles_emitter_template.tscn" id="14_oprun"]
+[ext_resource type="Script" uid="uid://co3rd015ar6rt" path="res://scripts/components/player-interaction.gd" id="19_pf23h"]
 [ext_resource type="Texture2D" uid="uid://cm3652wync2wm" path="res://assets/hud.png" id="22_a38lo"]
 [ext_resource type="Script" uid="uid://dod2dfpfyxx0t" path="res://scripts/components/inv/inv_node.gd" id="22_ke2ow"]
 [ext_resource type="Script" uid="uid://frarqffumwwk" path="res://scripts/ui_manager.gd" id="22_wnwbv"]
@@ -508,6 +509,10 @@ height = 62.0
 script = ExtResource("5_ur7pv")
 metadata/_custom_type_script = "uid://p264gu1epqq8"
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_31cv2"]
+radius = 40.0
+height = 128.0
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_smehm"]
 radius = 20.0
 height = 64.0
@@ -971,7 +976,18 @@ pallets = Dictionary[String, AtlasTexture]({
 })
 metadata/_custom_type_script = "uid://bwmhc0jhku3v4"
 
+[node name="interaction" type="Area2D" parent="." unique_id=89795107]
+rotation = 1.5707964
+collision_layer = 8
+collision_mask = 68
+script = ExtResource("19_pf23h")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="interaction" unique_id=179219491]
+shape = SubResource("CapsuleShape2D_31cv2")
+debug_color = Color(0.99699646, 0.05073563, 1.92523e-07, 0.41960785)
+
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1611760110 node_paths=PackedStringArray("health_component", "shape", "effects")]
+collision_mask = 33
 script = ExtResource("5_fjrip")
 health_component = NodePath("../Health")
 shape = NodePath("CollisionShape2D2")
@@ -1077,9 +1093,9 @@ theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 script = ExtResource("22_ke2ow")
 inv = {
-"hotbar": NodePath("hotbar/HBoxContainer"),
 "main_inv": NodePath("CenterContainer/Control/ScrollContainer/GridContainer")
 }
+cathegory = Array[String](["main_inv"])
 
 [node name="CenterContainer" type="CenterContainer" parent="Camera2D/CanvasLayer/inv" unique_id=783758559]
 layout_mode = 2
@@ -1122,107 +1138,7 @@ theme_override_constants/h_separation = 12
 theme_override_constants/v_separation = 12
 columns = 10
 script = ExtResource("24_ujl30")
-space_size = 32
-
-[node name="dropped_items" type="Control" parent="Camera2D/CanvasLayer/inv" unique_id=1304480765]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Camera2D/CanvasLayer/inv/dropped_items" unique_id=485435918]
-layout_mode = 0
-offset_right = 1088.0
-offset_bottom = 584.0
-
-[node name="GridContainer" type="GridContainer" parent="Camera2D/CanvasLayer/inv/dropped_items/ScrollContainer" unique_id=257449036]
-layout_mode = 2
-columns = 4
-script = ExtResource("24_ujl30")
-space_size = 32
-
-[node name="NinePatchRect" type="NinePatchRect" parent="Camera2D/CanvasLayer/inv/dropped_items" unique_id=294582017]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -11.0
-offset_top = -10.0
-offset_right = 9.0
-offset_bottom = 10.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("23_4ni07")
-region_rect = Rect2(32, 0, 16, 16)
-patch_margin_left = 10
-patch_margin_top = 10
-patch_margin_right = 10
-patch_margin_bottom = 10
-
-[node name="equipment" type="Control" parent="Camera2D/CanvasLayer/inv" unique_id=891540468]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-
-[node name="NinePatchRect" type="NinePatchRect" parent="Camera2D/CanvasLayer/inv/equipment" unique_id=170358464]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -11.0
-offset_top = -10.0
-offset_right = 9.0
-offset_bottom = 10.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("23_4ni07")
-region_rect = Rect2(64, 0, 16, 16)
-patch_margin_left = 10
-patch_margin_top = 10
-patch_margin_right = 10
-patch_margin_bottom = 10
-
-[node name="hotbar" type="Control" parent="Camera2D/CanvasLayer/inv" unique_id=1825310986]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-
-[node name="NinePatchRect" type="NinePatchRect" parent="Camera2D/CanvasLayer/inv/hotbar" unique_id=179106682]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -144.0
-offset_top = -24.0
-offset_right = 144.0
-offset_bottom = 24.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("23_4ni07")
-region_rect = Rect2(32, 0, 16, 16)
-patch_margin_left = 10
-patch_margin_top = 10
-patch_margin_right = 10
-patch_margin_bottom = 10
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Camera2D/CanvasLayer/inv/hotbar" unique_id=1539343620]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -118.0
-offset_top = -20.0
-offset_right = 118.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 19
-alignment = 1
-script = ExtResource("24_ujl30")
-space_size = 5
+expanding = true
 
 [node name="menu_blend" type="ColorRect" parent="Camera2D/CanvasLayer" unique_id=1116665265]
 anchors_preset = 15
@@ -1239,6 +1155,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 8.0
+offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -1319,6 +1237,8 @@ text = "Exit
 [node name="ui_anim" type="AnimationPlayer" parent="Camera2D/CanvasLayer" unique_id=125496496]
 libraries/ = SubResource("AnimationLibrary_487ah")
 
+[connection signal="area_entered" from="interaction" to="interaction" method="_on_area_entered"]
+[connection signal="area_exited" from="interaction" to="interaction" method="_on_area_exited"]
 [connection signal="pressed" from="Camera2D/CanvasLayer/menu/VBoxContainer/continoue" to="Camera2D/CanvasLayer" method="_on_continoue_pressed"]
 [connection signal="pressed" from="Camera2D/CanvasLayer/menu/VBoxContainer/settings" to="Camera2D/CanvasLayer" method="_on_settings_pressed"]
 [connection signal="pressed" from="Camera2D/CanvasLayer/menu/VBoxContainer/save" to="Camera2D/CanvasLayer" method="_on_save_pressed"]

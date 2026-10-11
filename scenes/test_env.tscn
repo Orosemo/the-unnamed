@@ -11,11 +11,15 @@
 [ext_resource type="Texture2D" uid="uid://bnlisd2lonlkr" path="res://assets/atlas/effect_particles/confusion.tres" id="8_faimo"]
 [ext_resource type="PackedScene" uid="uid://dcyb7rjyndnxo" path="res://scenes/prefabs/item_node.tscn" id="9_u72b4"]
 [ext_resource type="Texture2D" uid="uid://bhuq2pqh1y6g6" path="res://assets/atlas/effects/shock_active_empty.tres" id="9_yf2fk"]
-[ext_resource type="Resource" uid="uid://cera02o4oon6y" path="res://resources/items/bomb.tres" id="10_douh2"]
 [ext_resource type="Texture2D" uid="uid://bxqouq4ubxyh0" path="res://assets/atlas/effect_particles/speed.tres" id="10_fgyt0"]
 [ext_resource type="Texture2D" uid="uid://btuijw74we8y4" path="res://assets/atlas/effects/speed_active_empty.tres" id="11_sx0ap"]
 [ext_resource type="Texture2D" uid="uid://cln1bkj84jdu6" path="res://assets/atlas/effects/confusion_active_empty.tres" id="13_mgaop"]
+[ext_resource type="Resource" uid="uid://c2wmxu4tw8pya" path="res://resources/items/slime.tres" id="15_mgaop"]
 [ext_resource type="LabelSettings" uid="uid://bn0fq2rjj4vjs" path="res://UI/label/default.tres" id="16_001sm"]
+[ext_resource type="Script" uid="uid://bv1ryhjb5fibb" path="res://scripts/resources/slot.gd" id="16_yf2fk"]
+[ext_resource type="Resource" uid="uid://cdb0ixf47td8q" path="res://resources/items/rotten_flesh.tres" id="17_001sm"]
+[ext_resource type="Resource" uid="uid://dei66nr4srd5h" path="res://resources/items/bones.tres" id="18_3evda"]
+[ext_resource type="Resource" uid="uid://dkve0e1q2adr5" path="res://resources/items/health_potion.tres" id="19_w1l63"]
 
 [sub_resource type="Resource" id="Resource_wpndf"]
 script = ExtResource("4_lfx8k")
@@ -46,6 +50,34 @@ id = 7
 amount = 20.0
 strenght = 1.0
 metadata/_custom_type_script = "uid://bbgtujuks36s1"
+
+[sub_resource type="Resource" id="Resource_mn5kn"]
+script = ExtResource("16_yf2fk")
+amount = 4
+item = ExtResource("15_mgaop")
+cathegory = 0
+metadata/_custom_type_script = "uid://bv1ryhjb5fibb"
+
+[sub_resource type="Resource" id="Resource_abb16"]
+script = ExtResource("16_yf2fk")
+amount = 4
+item = ExtResource("17_001sm")
+cathegory = 0
+metadata/_custom_type_script = "uid://bv1ryhjb5fibb"
+
+[sub_resource type="Resource" id="Resource_mj4hp"]
+script = ExtResource("16_yf2fk")
+amount = 4
+item = ExtResource("18_3evda")
+cathegory = 0
+metadata/_custom_type_script = "uid://bv1ryhjb5fibb"
+
+[sub_resource type="Resource" id="Resource_qgw1v"]
+script = ExtResource("16_yf2fk")
+amount = 4
+item = ExtResource("19_w1l63")
+cathegory = 0
+metadata/_custom_type_script = "uid://bv1ryhjb5fibb"
 
 [node name="TestEnv" type="Node2D" unique_id=510128193]
 
@@ -147,9 +179,24 @@ texture = ExtResource("13_mgaop")
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1118735195]
 color = Color(0.28852558, 0.47366595, 0.54164904, 1)
 
-[node name="item" parent="." unique_id=380949591 instance=ExtResource("9_u72b4")]
+[node name="item4" parent="." unique_id=380949591 instance=ExtResource("9_u72b4")]
+position = Vector2(344.1, 16.65)
+scale = Vector2(0.001, 0.001)
+item = SubResource("Resource_mn5kn")
+
+[node name="item3" parent="." unique_id=581395749 instance=ExtResource("9_u72b4")]
+position = Vector2(344.41, 16.664999)
+scale = Vector2(0.000100000005, 0.000100000005)
+item = SubResource("Resource_abb16")
+
+[node name="item2" parent="." unique_id=711789464 instance=ExtResource("9_u72b4")]
+position = Vector2(341, 16.5)
+scale = Vector2(0.010000001, 0.010000001)
+item = SubResource("Resource_mj4hp")
+
+[node name="item" parent="." unique_id=2039643206 instance=ExtResource("9_u72b4")]
 position = Vector2(310, 15)
-item = ExtResource("10_douh2")
+item = SubResource("Resource_qgw1v")
 
 [node name="Label" type="Label" parent="." unique_id=795209520]
 offset_left = -24.0
