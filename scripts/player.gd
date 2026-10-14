@@ -13,6 +13,7 @@ extends CharacterBody2D
 @onready var inv: InvNode = $Camera2D/CanvasLayer/inv
 @onready var camera: Camera2D = $Camera2D
 @onready var status_effects: StatusEffects = $StatusEffects
+@onready var item_dropper: ItemDropper = $ItemDropper
 
 enum States {IDLE, WALKING, SPRINTING, FALLING}
 
@@ -45,6 +46,10 @@ func change_state(new_state: States):
 
 func _ready() -> void:
 	TimeManager.play()
+	var slot = Slot.new()
+	slot.amount = 2
+	slot.item = load("resources/items/bomb.tres")
+	item_dropper.drop([slot])
 
 func _process(delta):
 	# midair funcs

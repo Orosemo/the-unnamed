@@ -4,6 +4,8 @@ class_name InvNode
 @export var inv: Dictionary[String, InvSpace]
 @export var cathegory:	Array[String]
 
+@onready var item_dropper: ItemDropper = $"../../../ItemDropper"
+
 var state: Dictionary
 
 func add_item(item: Slot):
@@ -44,6 +46,9 @@ func save() -> Dictionary:
 			inv_data[space_id]["Array"][i] = {}
 			inv_data[space_id]["Array"][i] = item_data
 
+	# save to global var aswell
+	GlobalAssets.inv = inv_data
+
 	return inv_data
 
 
@@ -73,12 +78,17 @@ func load_inv(inv_data: Dictionary):
 				slot_res.item = load(slot_data["item"])
 
 				slot_node.slot = slot_res
+				slot_node.item_dropper = item_dropper
 
 			# for empty slots
 			else:
 				var slot_res := Slot.new()
 				slot_node.slot = slot_res
+				slot_node.item_dropper = item_dropper
 
 			slot_node.add_to_group("slot")
 			space.add_child(slot_node)
 			space.inv_slots.append(slot_node)
+
+	# save to global var aswell
+	GlobalVars.inv = inv_data

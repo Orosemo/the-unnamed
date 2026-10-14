@@ -11,6 +11,8 @@ class_name InvSlot
 @onready var label: Label = $Label
 @onready var tooltip: TextureRect = $tooltip
 
+var item_dropper: ItemDropper
+
 signal item_changed
 
 func _get_drag_data(at_position: Vector2) -> Variant:
@@ -36,27 +38,38 @@ func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
 	else:
 		return true
 
+
 func _drop_data(at_position: Vector2, data: Variant) -> void:
 	if !slot or (slot.item == null and slot.amount == 0):
 		slot.amount = data.amount
 		slot.item = data.item
+		slot.cathegory = data.cathegory
 		data.amount = 0
 		data.item = null
+		data.cathegory = null
 	else:
-		if slot.item == data.item:
+		if slot.item == data.item and slot.cathegory == data.cathegory:
 			slot.amount += data.amount
 			data.amount = 0
-			data.item = null	
+			data.item = null
+			data.cathegory = null
 		else:
 			var new_amount = data.amount
 			var new_item = data.item
+			var new_cathegory = data.cathegory
 			data.amount = slot.amount
 			data.item = slot.item
+			data.cathegory = slot.cathegory
 			slot.amount = new_amount
 			slot.item = new_item
+			slot.cathegory = new_cathegory
 			
 	populate()
 	
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_DRAG_END and !get_viewport().gui_is_drag_successful():
+		item_dropper.drop([slot])
+		print("drop")
 
 func populate():
 	if slot.item != null:

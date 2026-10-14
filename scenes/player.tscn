@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b7kskyandvpnw" path="res://scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="Texture2D" uid="uid://dcnt2goyjrqnk" path="res://assets/light/32x32 textures (60).png" id="2_a38lo"]
 [ext_resource type="Script" uid="uid://kxi5yci43og0" path="res://scripts/components/velocity.gd" id="2_g2els"]
+[ext_resource type="Script" uid="uid://bl2m3wnqfi0as" path="res://scripts/components/inv/item_dropper.gd" id="2_wqfne"]
 [ext_resource type="Script" uid="uid://csn6pjafv0thn" path="res://scripts/components/status_effects.gd" id="3_dqkch"]
 [ext_resource type="Script" uid="uid://cp0xdx1brar7k" path="res://scripts/components/stats.gd" id="3_ur7pv"]
 [ext_resource type="Script" uid="uid://bbgtujuks36s1" path="res://scripts/resources/status_effect.gd" id="4_smehm"]
@@ -903,6 +904,11 @@ coyote_time = 100
 gravity_mult = 0.1
 wall_jump_timer_val = 800
 
+[node name="ItemDropper" type="Node2D" parent="." unique_id=202297119 node_paths=PackedStringArray("parent")]
+script = ExtResource("2_wqfne")
+parent = NodePath("..")
+metadata/_custom_type_script = "uid://bl2m3wnqfi0as"
+
 [node name="DirectionalLight2D2" type="PointLight2D" parent="." unique_id=1270015219]
 energy = 0.25
 shadow_enabled = true
@@ -1147,7 +1153,7 @@ theme_override_constants/h_separation = 12
 theme_override_constants/v_separation = 12
 columns = 10
 script = ExtResource("24_ujl30")
-space_size = 4
+expanding = true
 
 [node name="menu_blend" type="ColorRect" parent="Camera2D/CanvasLayer" unique_id=1116665265]
 anchors_preset = 15
