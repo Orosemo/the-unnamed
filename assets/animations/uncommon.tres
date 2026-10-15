@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://dbryvlepylklf"]
+
+[ext_resource type="Texture2D" uid="uid://c6v1mw4w6j2q" path="res://assets/item-despawn.png" id="1_gjplr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k5j7p"]
+atlas = ExtResource("1_gjplr")
+region = Rect2(64, 0, 61, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jcps0"]
+atlas = ExtResource("1_gjplr")
+region = Rect2(64, 64, 61, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dj0o0"]
+atlas = ExtResource("1_gjplr")
+region = Rect2(64, 128, 61, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iudyi"]
+atlas = ExtResource("1_gjplr")
+region = Rect2(64, 192, 61, 64)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k5j7p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jcps0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dj0o0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iudyi")
+}],
+"loop": false,
+"name": &"despawn",
+"speed": 10.0
+}]

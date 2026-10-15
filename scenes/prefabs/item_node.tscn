@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dcyb7rjyndnxo"]
 
 [ext_resource type="Script" uid="uid://bib68wjpdavqn" path="res://scripts/item_node.gd" id="1_js0ma"]
+[ext_resource type="SpriteFrames" uid="uid://cn3286ys6528c" path="res://assets/animations/common.tres" id="2_gkvdr"]
 [ext_resource type="Texture2D" uid="uid://coik1bp3dcr2v" path="res://assets/atlas/items/bomb.tres" id="2_js0ma"]
-[ext_resource type="Texture2D" uid="uid://dq0lxtqm68fbd" path="res://assets/items.png" id="2_slgdn"]
 [ext_resource type="Texture2D" uid="uid://dcnt2goyjrqnk" path="res://assets/light/32x32 textures (60).png" id="3_slgdn"]
 [ext_resource type="Script" uid="uid://cu42a10k1vww6" path="res://scripts/prefabs/item_collider.gd" id="5_gkvdr"]
 [ext_resource type="LabelSettings" uid="uid://bn0fq2rjj4vjs" path="res://UI/label/default.tres" id="5_slgdn"]
@@ -11,10 +11,6 @@
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_js0ma"]
 rough = true
 absorbent = true
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_iwlds"]
-atlas = ExtResource("2_slgdn")
-region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gigwu"]
 radius = 18.027756
@@ -83,9 +79,11 @@ collision_layer = 64
 physics_material_override = SubResource("PhysicsMaterial_js0ma")
 script = ExtResource("1_js0ma")
 
-[node name="bg" type="Sprite2D" parent="." unique_id=755191591]
+[node name="bg" type="AnimatedSprite2D" parent="." unique_id=1169532718]
 modulate = Color(1, 1, 1, 0.39215687)
-texture = SubResource("AtlasTexture_iwlds")
+sprite_frames = ExtResource("2_gkvdr")
+animation = &"despawn"
+frame_progress = 0.92047256
 
 [node name="item" type="Sprite2D" parent="." unique_id=1437403853]
 texture = ExtResource("2_js0ma")
@@ -128,5 +126,6 @@ label_settings = SubResource("LabelSettings_gkvdr")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1949197749]
 libraries/ = SubResource("AnimationLibrary_4vkqi")
 
+[connection signal="animation_finished" from="bg" to="." method="_on_bg_animation_finished"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

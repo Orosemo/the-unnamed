@@ -79,6 +79,15 @@ var status_effect_anims_assets = [
 ]
 
 var rarities = [
+	"res://assets/animations/common.tres",
+	"res://assets/animations/uncommon.tres",
+	"res://assets/animations/rare.tres",
+	"res://assets/animations/ultra_rare.tres",
+	"res://assets/animations/mythical.tres",
+	"res://assets/animations/legendary.tres",
+]
+
+var rarities_anim = [
 	"assets/atlas/items/rarities/common.tres",
 	"assets/atlas/items/rarities/uncommon.tres",
 	"assets/atlas/items/rarities/rare.tres",

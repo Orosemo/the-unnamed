@@ -21,12 +21,15 @@ func _create_generated_slots(slot_count: int) -> void:
 func add(item: Slot):
 	print("yay3")
 	if expanding:
-		var new_slot: InvSlot = preload("res://scenes/prefabs/inv_slot.tscn").instantiate()
-		new_slot.slot = item
-		new_slot.item_dropper = item_dropper
-		add_child(new_slot)
-		inv_slots.append(new_slot)
-		space_size = inv_slots.size()
+		if inv_slots.find(null) != -1:
+			inv_slots[inv_slots.find(null)].slot = item
+		else:
+			var new_slot: InvSlot = preload("res://scenes/prefabs/inv_slot.tscn").instantiate()
+			new_slot.slot = item
+			new_slot.item_dropper = item_dropper
+			add_child(new_slot)
+			inv_slots.append(new_slot)
+			space_size = inv_slots.size()
 	elif !expanding and inv_slots.size() < space_size:
 		var position = inv_slots.find(null)
 		inv_slots[position] = InvSlot.new()

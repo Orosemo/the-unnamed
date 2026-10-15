@@ -1,6 +1,7 @@
 extends Area2D
 
 @onready var item: RigidBody2D = $".."
+@onready var bg: AnimatedSprite2D = $"../bg"
 
 
 # Called when the node enters the scene tree for the first time.
@@ -18,4 +19,4 @@ func get_item():
 func kill():
 	print("kill")
 	$"CollisionShape2D".disabled = true
-	$"../AnimationPlayer".play("exit")
+	bg.play("despawn")

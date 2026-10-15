@@ -12,6 +12,7 @@ class_name InvSlot
 @onready var tooltip: TextureRect = $tooltip
 
 var item_dropper: ItemDropper
+var dragging = false
 
 signal item_changed
 
@@ -30,6 +31,7 @@ func _get_drag_data(at_position: Vector2) -> Variant:
 	preview.self_modulate = Color(preview.modulate, 0.5)
 
 	set_drag_preview(preview)
+	dragging = true
 	return slot
 
 func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
@@ -63,12 +65,15 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 			slot.amount = new_amount
 			slot.item = new_item
 			slot.cathegory = new_cathegory
-			
+	dragging = false
 	populate()
 	
 func _notification(what: int) -> void:
-	if what == NOTIFICATION_DRAG_END and !get_viewport().gui_is_drag_successful():
+	if what == NOTIFICATION_DRAG_END and !get_viewport().gui_is_drag_successful() and dragging:
 		item_dropper.drop([slot])
+		slot.amount = 0
+		slot.item = null
+		slot.cathegory = 0
 		print("drop")
 
 func populate():
