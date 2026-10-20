@@ -1,9 +1,8 @@
 # Hit'n'Run
 
-Version 0.1.7
+Version 0.1.8
 
 Action platformer rougelike inspired by hollow knight
-Action platformer rougelike inspired by hollow knight (test)
 
 Made by Joko26 (coding and design) and Hysedux (art + music/sfx and level + conceptual design)
 

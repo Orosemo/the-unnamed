@@ -16,7 +16,7 @@ func drop(items: Array[Slot]):
 				var new_slot = Slot.new()
 				new_slot.amount = 1
 				new_slot.item = slot.item
-				_drop_item(slot)
+				_drop_item(new_slot)
 
 func _drop_item(slot: Slot):
 	var random_spread_x = randf_range(1, spread.x)

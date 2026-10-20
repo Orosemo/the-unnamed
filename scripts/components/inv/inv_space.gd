@@ -20,9 +20,15 @@ func _create_generated_slots(slot_count: int) -> void:
 
 func add(item: Slot):
 	print("yay3")
+	var index = inv_slots.find_custom(func(slot): return slot.slot.amount == 0)
 	if expanding:
-		if inv_slots.find(null) != -1:
-			inv_slots[inv_slots.find(null)].slot = item
+		if index != -1:
+			inv_slots[index].slot = item
+			inv_slots[index].populate()
+			inv_slots[index].item_dropper = item_dropper
+			print("item:")
+			print(item)
+			return
 		else:
 			var new_slot: InvSlot = preload("res://scenes/prefabs/inv_slot.tscn").instantiate()
 			new_slot.slot = item
@@ -30,11 +36,9 @@ func add(item: Slot):
 			add_child(new_slot)
 			inv_slots.append(new_slot)
 			space_size = inv_slots.size()
-	elif !expanding and inv_slots.size() < space_size:
-		var position = inv_slots.find(null)
-		inv_slots[position] = InvSlot.new()
-		inv_slots[position].slot = item
-		inv_slots[position].item_dropper = item_dropper
+	elif !expanding:
+		inv_slots[index].slot = item
+		inv_slots[index].item_dropper = item_dropper
 		space_size = inv_slots.size()
 	else:
 		status_message_box.add_message("NO SPACE")

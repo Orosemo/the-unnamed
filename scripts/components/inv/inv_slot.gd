@@ -13,6 +13,7 @@ class_name InvSlot
 
 var item_dropper: ItemDropper
 var dragging = false
+static var active_drag_slot: InvSlot
 
 signal item_changed
 
@@ -32,10 +33,11 @@ func _get_drag_data(at_position: Vector2) -> Variant:
 
 	set_drag_preview(preview)
 	dragging = true
+	active_drag_slot = self
 	return slot
 
 func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
-	if type:
+	if type != null:
 		return data.item.type == type
 	else:
 		return true
@@ -65,16 +67,19 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 			slot.amount = new_amount
 			slot.item = new_item
 			slot.cathegory = new_cathegory
+	if active_drag_slot:
+		active_drag_slot.dragging = false
+		active_drag_slot = null
 	dragging = false
 	populate()
 	
 func _notification(what: int) -> void:
-	if what == NOTIFICATION_DRAG_END and !get_viewport().gui_is_drag_successful() and dragging:
-		item_dropper.drop([slot])
-		slot.amount = 0
-		slot.item = null
-		slot.cathegory = 0
-		print("drop")
+	if what == NOTIFICATION_DRAG_END and active_drag_slot == self:
+		dragging = false
+		active_drag_slot = null
+		if !get_viewport().gui_is_drag_successful():
+			item_dropper.drop([slot.duplicate()])
+			clear()
 
 func populate():
 	if slot.item != null:
