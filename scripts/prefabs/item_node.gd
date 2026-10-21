@@ -15,6 +15,7 @@ func update():
 	label.text = str(item.amount)
 
 func _ready() -> void:
+	interact.visible = false
 	if item:
 		update()
 

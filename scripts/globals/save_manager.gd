@@ -21,15 +21,18 @@ func save():
 
 	var save_nodes = get_tree().get_nodes_in_group("Persist")
 
+	# create header with current root scene path
 	var header = {
 		"header": true,
 		"scene": get_tree().current_scene.scene_file_path,
 	}
 
+	# store header
 	save_file.store_line(JSON.stringify(header))
 
 	print(header)
 
+	# check all save nodes
 	for node in save_nodes:
 
 		if node.scene_file_path.is_empty():
@@ -40,6 +43,7 @@ func save():
 			print("persistent node '%s' missing save()" % node.name)
 			continue
 
+		# save stuff ig
 		var node_data = node.save()
 
 		node_data["parent"] = get_tree().current_scene.get_path_to(node.get_parent())
@@ -79,15 +83,18 @@ func load_save():
 		print("Could not load scene:", header["scene"])
 		return
 
+	# wait 2x !!
 	await get_tree().process_frame
 	await get_tree().process_frame
 
+	# check scene
 	var scene = get_tree().current_scene
 
 	if scene == null:
 		print("Current scene is still null")
 		return
 
+	# go through save file
 	while save_file.get_position() < save_file.get_length():
 
 		var line = save_file.get_line()
@@ -106,6 +113,7 @@ func load_save():
 			print("Parent missing:", node_data["parent"])
 			continue
 
+		# populate exsisting scene/node
 		print(node_data)
 		var existing = parent.get_node_or_null(node_data["name"])
 
@@ -114,6 +122,7 @@ func load_save():
 				existing.load_data(node_data)
 			continue
 
+		# load new scene
 		var packed_scene = load(node_data["filename"])
 
 		if packed_scene == null:
@@ -128,6 +137,7 @@ func load_save():
 		if new_object.has_method("load_data"):
 			new_object.load_data(node_data)
 
+	# yay
 	print("Load success")
 	TimeManager.play()
 	save_file.close()

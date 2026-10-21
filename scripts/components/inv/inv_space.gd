@@ -21,8 +21,9 @@ func _create_generated_slots(slot_count: int) -> void:
 func _process(delta: float) -> void:
 	if expanding:
 		var index = inv_slots.find_custom(func(slot): return slot.slot.amount == 0)
-		inv_slots[index].queue_free()
-		inv_slots.remove_at(index)
+		if index != -1:
+			inv_slots[index].queue_free()
+			inv_slots.remove_at(index)
 
 func add(item: Slot):
 	print("yay3")
