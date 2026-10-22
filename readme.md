@@ -1,6 +1,6 @@
 # Hit'n'Run
 
-Version 0.2.1
+Version 0.2.2
 
 Action platformer rougelike inspired by hollow knight
 
@@ -19,8 +19,8 @@ Made by Joko26 (coding and design) and Hysedux (art + music/sfx and level + conc
 
 Key/Controller | Function
 ---|---
-a, d/left stick |	left, right
-space/x |	jump
+a, d/left stick | left, right
+space/x | jump
 e/▲ | open inv (coming soon)
 escape/pause | pause
 

@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://u5fue0ggdtcr"]
+
+[ext_resource type="Script" uid="uid://djwomx6wr5chu" path="res://scripts/prefabs/input_button.gd" id="1_etmed"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_acjw2"]
+bg_color = Color(0, 0, 0, 0.60784316)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_etmed"]
+bg_color = Color(1, 1, 1, 0.4627451)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ic8h"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="input_button" type="Button" unique_id=474329259]
+custom_minimum_size = Vector2(0, 30)
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_acjw2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_etmed")
+script = ExtResource("1_etmed")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1736734920]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_right = 7
+theme_override_constants/margin_bottom = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1188754694]
+layout_mode = 2
+
+[node name="name" type="Label" parent="MarginContainer/HBoxContainer" unique_id=317932886]
+layout_mode = 2
+mouse_filter = 1
+text = "jump"
+vertical_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/HBoxContainer" unique_id=195632968]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_styles/separator = SubResource("StyleBoxFlat_3ic8h")
+
+[node name="action" type="Label" parent="MarginContainer/HBoxContainer" unique_id=558033598]
+layout_mode = 2
+mouse_filter = 1
+text = "space"
+vertical_alignment = 1

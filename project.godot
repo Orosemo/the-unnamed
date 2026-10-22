@@ -29,7 +29,6 @@ TransitionManager="*uid://baqi8o641w05a"
 
 [display]
 
-window/size/mode=3
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 window/vsync/vsync_mode=0
