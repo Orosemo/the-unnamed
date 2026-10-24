@@ -165,5 +165,4 @@ func load_config(name:String, section:String):
 	if err != OK:
 		return null
 
-
 	return config.get_value(section, name)

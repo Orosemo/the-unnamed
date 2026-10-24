@@ -22,6 +22,7 @@ var input_actions = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Boot.boot_complete.connect(_create_action_list)
 	_create_action_list()
 
 
@@ -70,9 +71,11 @@ func _input(event: InputEvent) -> void:
 			(event is InputEventJoypadButton) or 
 			(event is InputEventJoypadMotion)
 		):
-			InputMap.erase_action(action_to_remap)
-			InputMap.action_add_event(action_to_remap, event)
+			InputMap.action_erase_events(action_to_remap)
+			InputMap.action_add_event(StringName(action_to_remap), event)
 			_update_action_list(remapping_button, event)
+
+			save_keybinds()
 
 			is_remapping = false
 			action_to_remap = null
@@ -80,3 +83,15 @@ func _input(event: InputEvent) -> void:
 
 func _update_action_list(button, event):
 	button.find_child("action").text = event.as_text().trim_suffix(" - Physical")
+
+func save_keybinds():
+	var actions = InputMap.get_actions()
+
+	var save_actions = {}
+
+	for action in input_actions:
+		save_actions[action] = InputMap.action_get_events(action)
+
+		SaveManager.save_config(save_actions, "keybinds", "settings")
+		print("keybinds saved :) = " + String(action))
+		print(InputMap.action_get_events(action))

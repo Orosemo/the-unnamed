@@ -26,6 +26,7 @@ GlobalAssets="*uid://bdcw4r1fb15kn"
 TimeManager="*uid://frci0bbqf0cc"
 SaveManager="*uid://d1l81u8sondob"
 TransitionManager="*uid://baqi8o641w05a"
+Boot="*uid://cc73xbq5p3mb8"
 
 [display]
 

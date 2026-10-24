@@ -29,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://c1owohp51ammu" path="res://assets/inv_boxes.png" id="23_4ni07"]
 [ext_resource type="Script" uid="uid://caoeks3dhwgnn" path="res://scripts/components/inv/inv_space.gd" id="24_ujl30"]
 [ext_resource type="Script" uid="uid://cp2l3xx0majj3" path="res://scripts/components/status_message_box.gd" id="26_dt7fs"]
+[ext_resource type="PackedScene" uid="uid://djuol8tbidnqx" path="res://scenes/windows/settings.tscn" id="31_gl8cc"]
 [ext_resource type="Theme" uid="uid://blfjvrqfqh4rr" path="res://UI/button/default.tres" id="31_wnwbv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i4ail"]
@@ -1224,7 +1225,6 @@ layout_mode = 2
 focus_neighbor_top = NodePath("../continoue")
 focus_neighbor_bottom = NodePath("../save")
 theme = ExtResource("31_wnwbv")
-disabled = true
 text = "Settings"
 
 [node name="save" type="Button" parent="Camera2D/CanvasLayer/menu/VBoxContainer" unique_id=944429238]
@@ -1249,6 +1249,33 @@ theme = ExtResource("31_wnwbv")
 text = "Exit
 "
 
+[node name="settings_container" type="MarginContainer" parent="Camera2D/CanvasLayer/menu" unique_id=1310022578]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="Settings" parent="Camera2D/CanvasLayer/menu/settings_container" unique_id=1681833316 instance=ExtResource("31_gl8cc")]
+layout_mode = 2
+
+[node name="back" type="Button" parent="Camera2D/CanvasLayer/menu/settings_container" unique_id=473602645]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+focus_neighbor_top = NodePath("../settings")
+focus_neighbor_bottom = NodePath("../exit")
+theme = ExtResource("31_wnwbv")
+text = "back
+"
+
 [node name="ui_anim" type="AnimationPlayer" parent="Camera2D/CanvasLayer" unique_id=125496496]
 libraries/ = SubResource("AnimationLibrary_487ah")
 
@@ -1259,4 +1286,5 @@ libraries/ = SubResource("AnimationLibrary_487ah")
 [connection signal="pressed" from="Camera2D/CanvasLayer/menu/VBoxContainer/save" to="Camera2D/CanvasLayer" method="_on_save_pressed"]
 [connection signal="pressed" from="Camera2D/CanvasLayer/menu/VBoxContainer/load" to="Camera2D/CanvasLayer" method="_on_load_pressed"]
 [connection signal="pressed" from="Camera2D/CanvasLayer/menu/VBoxContainer/exit" to="Camera2D/CanvasLayer" method="_on_exit_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/menu/settings_container/back" to="Camera2D/CanvasLayer" method="_on_back_pressed"]
 [connection signal="animation_finished" from="Camera2D/CanvasLayer/ui_anim" to="Camera2D/CanvasLayer" method="_on_ui_anim_animation_finished"]

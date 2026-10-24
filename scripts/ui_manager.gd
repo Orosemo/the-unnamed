@@ -8,6 +8,7 @@ extends CanvasLayer
 @onready var continoue: Button = $menu/VBoxContainer/continoue
 @onready var inv_blend: ColorRect = $inv_blend
 @onready var menu_blend: ColorRect = $menu_blend
+@onready var settings_container: MarginContainer = $menu/settings_container
 
 
 func _ready() -> void:
@@ -35,6 +36,9 @@ func _process(delta: float) -> void:
 		if menu.visible:
 			TimeManager.play()
 			ui_anim.play("menu_exit")
+			settings_container.visible = false
+			$menu/VBoxContainer.visible = true
+			$menu/NinePatchRect.visible = true
 		else:
 			TimeManager.pause()
 			ui_anim.play("menu_entry")
@@ -53,7 +57,9 @@ func _on_continoue_pressed() -> void:
 
 
 func _on_settings_pressed() -> void:
-	pass
+	settings_container.visible = true
+	$menu/VBoxContainer.visible = false
+	$menu/NinePatchRect.visible = false
 
 
 func _on_save_pressed() -> void:
@@ -73,3 +79,9 @@ func _on_ui_anim_animation_finished(anim_name: StringName) -> void:
 
 func _on_load_pressed() -> void:
 	SaveManager.load_save()
+
+
+func _on_back_pressed() -> void:
+	settings_container.visible = false
+	$menu/VBoxContainer.visible = true
+	$menu/NinePatchRect.visible = true
