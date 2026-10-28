@@ -28,7 +28,7 @@ func _on_load_pressed() -> void:
 
 
 func _on_settings_pressed() -> void:
-	pass
+	TransitionManager.transition("res://scenes/windows/settings_menu.tscn")
 
 
 func _on_exit_pressed() -> void:

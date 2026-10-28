@@ -2,31 +2,43 @@
 
 [ext_resource type="Script" uid="uid://48bmqrwp1nh2" path="res://scripts/settings.gd" id="1_185fj"]
 [ext_resource type="LabelSettings" uid="uid://bn0fq2rjj4vjs" path="res://UI/label/default.tres" id="1_exv6p"]
+[ext_resource type="FontFile" uid="uid://dfeuqwuwvbjkg" path="res://assets/fonts/ka1.ttf" id="3_185fj"]
 
-[node name="Settings" type="Control" unique_id=1681833316]
-layout_mode = 3
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sdnpc"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="MarginContainer" type="MarginContainer" unique_id=2087592174]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
 script = ExtResource("1_185fj")
 
-[node name="Panel" type="Panel" parent="." unique_id=1248613245]
+[node name="General" type="Control" parent="." unique_id=309789727]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Panel" type="Panel" parent="General" unique_id=806438290]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -399.0
-offset_top = -268.0
-offset_right = 399.0
+offset_left = -520.0
+offset_top = -204.0
+offset_right = 520.0
 offset_bottom = 268.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=1120042273]
+[node name="MarginContainer" type="MarginContainer" parent="General/Panel" unique_id=352546372]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -38,34 +50,266 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer" unique_id=465428262]
+[node name="VBoxContainer" type="VBoxContainer" parent="General/Panel/MarginContainer" unique_id=1354824000]
 layout_mode = 2
 
-[node name="hint" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=661661058]
+[node name="Resolution" type="HBoxContainer" parent="General/Panel/MarginContainer/VBoxContainer" unique_id=1614302522]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="General/Panel/MarginContainer/VBoxContainer/Resolution" unique_id=758467756]
+layout_mode = 2
+text = "Resolution"
+label_settings = ExtResource("1_exv6p")
+
+[node name="resolution" type="OptionButton" parent="General/Panel/MarginContainer/VBoxContainer/Resolution" unique_id=505660509]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_185fj")
+selected = 0
+allow_reselect = true
+item_count = 5
+popup/item_0/text = "1020x1080"
+popup/item_0/id = 0
+popup/item_1/text = "1600x900"
+popup/item_1/id = 1
+popup/item_2/text = "1280x720"
+popup/item_2/id = 2
+popup/item_3/text = "3440x1080"
+popup/item_3/id = 3
+popup/item_4/text = "1152x648"
+popup/item_4/id = 4
+
+[node name="Window" type="HBoxContainer" parent="General/Panel/MarginContainer/VBoxContainer" unique_id=335157321]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="General/Panel/MarginContainer/VBoxContainer/Window" unique_id=2055466360]
+layout_mode = 2
+text = "Window Type"
+label_settings = ExtResource("1_exv6p")
+
+[node name="window" type="OptionButton" parent="General/Panel/MarginContainer/VBoxContainer/Window" unique_id=1964721032]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_185fj")
+selected = 0
+allow_reselect = true
+item_count = 3
+popup/item_0/text = "Windowed"
+popup/item_0/id = 0
+popup/item_1/text = "Fullscreen"
+popup/item_1/id = 1
+popup/item_2/text = "Exclusive Fullscreen"
+popup/item_2/id = 2
+
+[node name="music_sound" type="Control" parent="." unique_id=973882993]
+visible = false
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Panel" type="Panel" parent="music_sound" unique_id=1203106333]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -520.0
+offset_top = -204.0
+offset_right = 520.0
+offset_bottom = 268.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="music_sound/Panel" unique_id=70493442]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="music_sound/Panel/MarginContainer" unique_id=1284026734]
 layout_mode = 2
 
-[node name="name" type="Label" parent="Panel/MarginContainer/VBoxContainer/hint" unique_id=250835365]
+[node name="music" type="HBoxContainer" parent="music_sound/Panel/MarginContainer/VBoxContainer" unique_id=766285010]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+localize_numeral_system = false
+alignment = 1
+
+[node name="Label" type="Label" parent="music_sound/Panel/MarginContainer/VBoxContainer/music" unique_id=1967712640]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Music"
+label_settings = ExtResource("1_exv6p")
+
+[node name="music" type="HSlider" parent="music_sound/Panel/MarginContainer/VBoxContainer/music" unique_id=1917583091]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+max_value = 200.0
+value = 100.0
+rounded = true
+
+[node name="display" type="Label" parent="music_sound/Panel/MarginContainer/VBoxContainer/music" unique_id=804471267]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 1
+text = "100"
+label_settings = ExtResource("1_exv6p")
+
+[node name="music mute" type="CheckBox" parent="music_sound/Panel/MarginContainer/VBoxContainer/music" unique_id=373288536]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="sfx" type="HBoxContainer" parent="music_sound/Panel/MarginContainer/VBoxContainer" unique_id=1748900659]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="music_sound/Panel/MarginContainer/VBoxContainer/sfx" unique_id=543408728]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "SFX"
+label_settings = ExtResource("1_exv6p")
+
+[node name="sfx" type="HSlider" parent="music_sound/Panel/MarginContainer/VBoxContainer/sfx" unique_id=65184522]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+max_value = 200.0
+value = 100.0
+
+[node name="display" type="Label" parent="music_sound/Panel/MarginContainer/VBoxContainer/sfx" unique_id=857417865]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 1
+text = "100"
+label_settings = ExtResource("1_exv6p")
+
+[node name="sfx mute" type="CheckBox" parent="music_sound/Panel/MarginContainer/VBoxContainer/sfx" unique_id=1633539861]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="Keybinds" type="Control" parent="." unique_id=1681833316]
+visible = false
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Panel" type="Panel" parent="Keybinds" unique_id=1248613245]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -520.0
+offset_top = -204.0
+offset_right = 520.0
+offset_bottom = 268.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Keybinds/Panel" unique_id=1120042273]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Keybinds/Panel/MarginContainer" unique_id=465428262]
+layout_mode = 2
+
+[node name="hint" type="HBoxContainer" parent="Keybinds/Panel/MarginContainer/VBoxContainer" unique_id=661661058]
+layout_mode = 2
+
+[node name="name" type="Label" parent="Keybinds/Panel/MarginContainer/VBoxContainer/hint" unique_id=250835365]
 layout_mode = 2
 text = "Name	"
 label_settings = ExtResource("1_exv6p")
 
-[node name="VSeparator" type="VSeparator" parent="Panel/MarginContainer/VBoxContainer/hint" unique_id=454156831]
+[node name="VSeparator" type="VSeparator" parent="Keybinds/Panel/MarginContainer/VBoxContainer/hint" unique_id=454156831]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="action" type="Label" parent="Panel/MarginContainer/VBoxContainer/hint" unique_id=1705860689]
+[node name="action" type="Label" parent="Keybinds/Panel/MarginContainer/VBoxContainer/hint" unique_id=1705860689]
 layout_mode = 2
 text = "Action"
 label_settings = ExtResource("1_exv6p")
 
-[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer" unique_id=420442988]
+[node name="HSeparator" type="HSeparator" parent="Keybinds/Panel/MarginContainer/VBoxContainer" unique_id=420442988]
 layout_mode = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=1062500820]
+[node name="ScrollContainer" type="ScrollContainer" parent="Keybinds/Panel/MarginContainer/VBoxContainer" unique_id=1062500820]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="buttons" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/ScrollContainer" unique_id=766113004]
+[node name="buttons" type="VBoxContainer" parent="Keybinds/Panel/MarginContainer/VBoxContainer/ScrollContainer" unique_id=766113004]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
+
+[node name="nav" type="Control" parent="." unique_id=752539891]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="nav" unique_id=1216933939]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -520.0
+offset_top = 25.0
+offset_right = 520.0
+offset_bottom = 89.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_sdnpc")
+
+[node name="MarginContainer" type="MarginContainer" parent="nav/Panel" unique_id=1027078326]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="HBoxContainer" parent="nav/Panel/MarginContainer" unique_id=826466790]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="General" type="Button" parent="nav/Panel/MarginContainer/VBoxContainer" unique_id=1310060824]
+layout_mode = 2
+disabled = true
+text = "General"
+
+[node name="Music_Sound" type="Button" parent="nav/Panel/MarginContainer/VBoxContainer" unique_id=1394205053]
+layout_mode = 2
+text = "Music/SFX"
+
+[node name="Keybinds" type="Button" parent="nav/Panel/MarginContainer/VBoxContainer" unique_id=1774873328]
+layout_mode = 2
+text = "Keybinds
+"
+
+[connection signal="item_selected" from="General/Panel/MarginContainer/VBoxContainer/Resolution/resolution" to="." method="_on_resolution_item_selected"]
+[connection signal="item_selected" from="General/Panel/MarginContainer/VBoxContainer/Window/window" to="." method="_on_window_item_selected"]
+[connection signal="drag_ended" from="music_sound/Panel/MarginContainer/VBoxContainer/music/music" to="." method="_on_music_drag_ended"]
+[connection signal="value_changed" from="music_sound/Panel/MarginContainer/VBoxContainer/music/music" to="." method="_on_music_value_changed"]
+[connection signal="toggled" from="music_sound/Panel/MarginContainer/VBoxContainer/music/music mute" to="." method="_on_music_mute_toggled"]
+[connection signal="drag_ended" from="music_sound/Panel/MarginContainer/VBoxContainer/sfx/sfx" to="." method="_on_sfx_drag_ended"]
+[connection signal="value_changed" from="music_sound/Panel/MarginContainer/VBoxContainer/sfx/sfx" to="." method="_on_sfx_value_changed"]
+[connection signal="toggled" from="music_sound/Panel/MarginContainer/VBoxContainer/sfx/sfx mute" to="." method="_on_sfx_mute_toggled"]
+[connection signal="pressed" from="nav/Panel/MarginContainer/VBoxContainer/General" to="." method="_on_general_pressed"]
+[connection signal="pressed" from="nav/Panel/MarginContainer/VBoxContainer/Music_Sound" to="." method="_on_music_sound_pressed"]
+[connection signal="pressed" from="nav/Panel/MarginContainer/VBoxContainer/Keybinds" to="." method="_on_keybinds_pressed"]

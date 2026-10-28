@@ -107,8 +107,7 @@ text = "Load
 [node name="settings" type="Button" parent="MainMenu/CenterContainer/menu" unique_id=1873817790]
 layout_mode = 2
 theme = ExtResource("3_c20mq")
-text = "Settings
-(coming soon)"
+text = "Settings"
 
 [node name="exit" type="Button" parent="MainMenu/CenterContainer/menu" unique_id=1326299243]
 layout_mode = 2

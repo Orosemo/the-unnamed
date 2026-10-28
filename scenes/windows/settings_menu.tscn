@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://myiwtro8y7lp"]
+
+[ext_resource type="Script" path="res://scenes/windows/settings_menu.gd" id="1_16qo8"]
+[ext_resource type="Texture2D" uid="uid://dvh3nww8ap3il" path="res://assets/tilesets/dungeon_tileset.png" id="1_nyfdo"]
+[ext_resource type="PackedScene" uid="uid://djuol8tbidnqx" path="res://scenes/windows/settings.tscn" id="2_afi13"]
+[ext_resource type="Theme" uid="uid://blfjvrqfqh4rr" path="res://UI/button/default.tres" id="4_woh1a"]
+
+[node name="SettingsMenu" type="Control" unique_id=2006892587]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_16qo8")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1681918865]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_nyfdo")
+region_rect = Rect2(0, 0, 96, 96)
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="Settings" parent="." unique_id=1681833316 instance=ExtResource("2_afi13")]
+layout_mode = 1
+
+[node name="back" type="Button" parent="." unique_id=521660639]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 88.0
+offset_bottom = 43.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("4_woh1a")
+text = "back
+"
+
+[connection signal="pressed" from="back" to="." method="_on_back_pressed"]
