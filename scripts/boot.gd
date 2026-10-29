@@ -24,7 +24,13 @@ func load_keybinds():
 	boot_complete.emit()
 
 func _load_sound():
-	if SaveManager.load_config("music_mute", "settings") and SaveManager.load_config("sfx_mute", "settings"):
+	if (
+		SaveManager.load_config("music_mute", "settings") != null
+		and SaveManager.load_config("sfx_mute", "settings") != null
+		and SaveManager.load_config("music_volume", "settings") != null
+		and SaveManager.load_config("sfx_volume", "settings") != null
+		):
+
 		AudioServer.set_bus_mute(1, SaveManager.load_config("music_mute", "settings"))
 		AudioServer.set_bus_mute(2, SaveManager.load_config("sfx_mute", "settings"))
 
