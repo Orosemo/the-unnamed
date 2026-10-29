@@ -91,6 +91,7 @@ func _process(delta):
 	else:
 		#handle jump
 		if Input.is_action_just_pressed("jump"):
+			print("jump detected")
 			jump(stats.jump_velo)
 			coyote_time_timer = 0
 

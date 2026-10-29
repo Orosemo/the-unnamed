@@ -52,17 +52,14 @@ func _ready() -> void:
 	music_display.text = str($music_sound/Panel/MarginContainer/VBoxContainer/music/music.value)
 	sfx_display.text = str($music_sound/Panel/MarginContainer/VBoxContainer/sfx/sfx.value)
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
 
 func _create_action_list():
-	InputMap.load_from_project_settings()
-
 	for child in buttons.get_children():
-		child.queue_free
+		child.queue_free()
 
 	for action in input_actions:
 		var button = INPUT_BUTTON.instantiate()
@@ -112,16 +109,13 @@ func _update_action_list(button, event):
 	button.find_child("action").text = event.as_text().trim_suffix(" - Physical")
 
 func save_keybinds():
-	var actions = InputMap.get_actions()
-
 	var save_actions = {}
 
 	for action in input_actions:
 		save_actions[action] = InputMap.action_get_events(action)
 
-		SaveManager.save_config(save_actions, "keybinds", "settings")
-		print("keybinds saved :) = " + String(action))
-		print(InputMap.action_get_events(action))
+	SaveManager.save_config(save_actions, "keybinds", "settings")
+	print("keybinds saved :)")
 
 
 func _change_page(to: String):
@@ -172,17 +166,21 @@ func _on_resolution_item_selected(index: int) -> void:
 
 func _on_music_mute_toggled(toggled_on: bool) -> void:
 	AudioServer.set_bus_mute(1, toggled_on)
+	SaveManager.save_config(toggled_on, "music_mute", "settings")
 
 func _on_sfx_mute_toggled(toggled_on: bool) -> void:
 	AudioServer.set_bus_mute(2, toggled_on)
+	SaveManager.save_config(toggled_on, "sfx_mute", "settings")
 
 
 func _on_sfx_value_changed(value: float) -> void:
 	AudioServer.set_bus_mute(2, false)
 	sfx_display.text = str(value)
 	AudioServer.set_bus_volume_db(2, value)
+	SaveManager.save_config(value, "sfx_volume", "settings")
 
 func _on_music_value_changed(value: float) -> void:
 	AudioServer.set_bus_mute(1, false)
 	music_display.text = str(value)
 	AudioServer.set_bus_volume_db(1, value)
+	SaveManager.save_config(value, "music_volume", "settings")

@@ -1,6 +1,6 @@
 # Hit'n'Run
 
-Version 0.2.4
+Version 0.2.5
 
 Action platformer rougelike inspired by hollow knight
 
