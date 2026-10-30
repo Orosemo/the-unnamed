@@ -148,10 +148,16 @@ func load_save():
 func save_config(value, name:String, section:String):
 
 	var config = ConfigFile.new()
+	var err = config.load("user://config.cfg")
+	if err != OK and err != ERR_FILE_NOT_FOUND:
+		push_error("Could not load config before saving: %s" % error_string(err))
+		return
 
 	config.set_value(section, name, value)
 
-	config.save("user://config.cfg")
+	err = config.save("user://config.cfg")
+	if err != OK:
+		push_error("Could not save config: %s" % error_string(err))
 
 
 
@@ -162,7 +168,10 @@ func load_config(name:String, section:String):
 
 	var err = config.load("user://config.cfg")
 
+	if err == ERR_FILE_NOT_FOUND:
+		return null
 	if err != OK:
+		push_error("Could not load config: %s" % error_string(err))
 		return null
 
 	return config.get_value(section, name)

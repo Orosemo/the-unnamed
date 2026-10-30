@@ -29,6 +29,7 @@ const INPUT_BUTTON = preload("uid://u5fue0ggdtcr")
 var is_remapping = false
 var action_to_remap = null
 var remapping_button = null
+var initializing_audio_controls = true
 
 var input_actions = {
 	"left": "Move left",
@@ -47,10 +48,15 @@ var input_actions = {
 func _ready() -> void:
 	Boot.boot_complete.connect(_create_action_list)
 	_create_action_list()
-	$music_sound/Panel/MarginContainer/VBoxContainer/music/music.value = AudioServer.get_bus_volume_db(1)
-	$music_sound/Panel/MarginContainer/VBoxContainer/sfx/sfx.value = AudioServer.get_bus_volume_db(2)
+	var music_bus = AudioServer.get_bus_index(&"music")
+	var sfx_bus = AudioServer.get_bus_index(&"sfx")
+	$music_sound/Panel/MarginContainer/VBoxContainer/music/music.value = AudioServer.get_bus_volume_db(music_bus)
+	$music_sound/Panel/MarginContainer/VBoxContainer/sfx/sfx.value = AudioServer.get_bus_volume_db(sfx_bus)
+	get_node("music_sound/Panel/MarginContainer/VBoxContainer/music/music mute").button_pressed = AudioServer.is_bus_mute(music_bus)
+	get_node("music_sound/Panel/MarginContainer/VBoxContainer/sfx/sfx mute").button_pressed = AudioServer.is_bus_mute(sfx_bus)
 	music_display.text = str($music_sound/Panel/MarginContainer/VBoxContainer/music/music.value)
 	sfx_display.text = str($music_sound/Panel/MarginContainer/VBoxContainer/sfx/sfx.value)
+	initializing_audio_controls = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -165,22 +171,36 @@ func _on_resolution_item_selected(index: int) -> void:
 			DisplayServer.window_set_size(Vector2i(1152, 648))
 
 func _on_music_mute_toggled(toggled_on: bool) -> void:
-	AudioServer.set_bus_mute(1, toggled_on)
+	if initializing_audio_controls:
+		return
+	var music_bus = AudioServer.get_bus_index(&"music")
+	AudioServer.set_bus_mute(music_bus, toggled_on)
 	SaveManager.save_config(toggled_on, "music_mute", "settings")
 
 func _on_sfx_mute_toggled(toggled_on: bool) -> void:
-	AudioServer.set_bus_mute(2, toggled_on)
+	if initializing_audio_controls:
+		return
+	var sfx_bus = AudioServer.get_bus_index(&"sfx")
+	AudioServer.set_bus_mute(sfx_bus, toggled_on)
 	SaveManager.save_config(toggled_on, "sfx_mute", "settings")
 
 
 func _on_sfx_value_changed(value: float) -> void:
-	AudioServer.set_bus_mute(2, false)
+	if initializing_audio_controls:
+		return
+	var sfx_bus = AudioServer.get_bus_index(&"sfx")
+	AudioServer.set_bus_mute(sfx_bus, false)
+	SaveManager.save_config(false, "sfx_mute", "settings")
 	sfx_display.text = str(value)
-	AudioServer.set_bus_volume_db(2, value)
+	AudioServer.set_bus_volume_db(sfx_bus, value)
 	SaveManager.save_config(value, "sfx_volume", "settings")
 
 func _on_music_value_changed(value: float) -> void:
-	AudioServer.set_bus_mute(1, false)
+	if initializing_audio_controls:
+		return
+	var music_bus = AudioServer.get_bus_index(&"music")
+	AudioServer.set_bus_mute(music_bus, false)
+	SaveManager.save_config(false, "music_mute", "settings")
 	music_display.text = str(value)
-	AudioServer.set_bus_volume_db(1, value)
+	AudioServer.set_bus_volume_db(music_bus, value)
 	SaveManager.save_config(value, "music_volume", "settings")

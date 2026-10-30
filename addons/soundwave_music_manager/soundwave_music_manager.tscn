@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dm14xfb5jy047"]
+
+[ext_resource type="Script" uid="uid://cu4b2xmtev3hn" path="res://addons/soundwave_music_manager/soundwave_music_manager.gd" id="1_cok0y"]
+[ext_resource type="AudioStream" uid="uid://bt5ig5f0v2gm7" path="res://assets/playlist/main.tres" id="2_dyyj5"]
+
+[node name="SoundwaveMusicManager" type="AudioStreamPlayer2D" unique_id=1751678716]
+bus = &"music"
+script = ExtResource("1_cok0y")
+playlists = Dictionary[String, AudioStreamPlaylist]({
+"main": ExtResource("2_dyyj5")
+})
+play_on_load = ExtResource("2_dyyj5")

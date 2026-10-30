@@ -1,0 +1,7 @@
+[gd_resource type="AudioStreamPlaylist" format=3 uid="uid://bt5ig5f0v2gm7"]
+
+[ext_resource type="AudioStream" uid="uid://2crqb8wcpqc6" path="res://assets/sfx/cinematic-soul-suspense-background.mp3" id="1_dpr5v"]
+
+[resource]
+stream_count = 1
+stream_0 = ExtResource("1_dpr5v")

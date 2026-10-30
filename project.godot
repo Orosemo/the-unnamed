@@ -11,12 +11,12 @@ config_version=5
 [application]
 
 config/name="hit'n'run"
-config/version="0.1.0"
+config/version="0.3.0"
 run/main_scene="uid://d3o5deww7ijuc"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="uid://djm8vtohr31dm"
-config/icon="res://icon.svg"
+config/icon="uid://c1hp41tseb72o"
 boot_splash/minimum_display_time=4000
 
 [autoload]
@@ -27,16 +27,18 @@ TimeManager="*uid://frci0bbqf0cc"
 SaveManager="*uid://d1l81u8sondob"
 TransitionManager="*uid://baqi8o641w05a"
 Boot="*uid://cc73xbq5p3mb8"
+soundwaveMusicManager="*uid://dm14xfb5jy047"
 
 [display]
 
+window/size/mode=3
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 window/vsync/vsync_mode=0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/PaletteSwapShader/plugin.cfg")
+enabled=PackedStringArray("res://addons/PaletteSwapShader/plugin.cfg", "res://addons/soundwave_music_manager/plugin.cfg", "res://addons/soundwave_sfx_manager/plugin.cfg")
 
 [global_group]
 

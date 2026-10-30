@@ -14,6 +14,7 @@ extends CharacterBody2D
 @onready var camera: Camera2D = $Camera2D
 @onready var status_effects: StatusEffects = $StatusEffects
 @onready var item_dropper: ItemDropper = $ItemDropper
+@onready var soundwave_sfx_2d: SoundwaveSfx2D = $SoundwaveSfx2D
 
 enum States {IDLE, WALKING, SPRINTING, FALLING}
 
@@ -144,6 +145,7 @@ func _process(delta):
 func jump(value: float):
 	velocity_component.set_velocity_y(value)
 	anim_controller.play_all("jump", true)
+	soundwave_sfx_2d.play_sfx("jump")
 
 func save():
 	print("player save")
