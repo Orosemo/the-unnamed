@@ -24,7 +24,7 @@ space/x | jump
 e/▲ | open inv (coming soon)
 escape/pause | pause
 
-## Roadmap
+## Roadmap (very optimistic)
 
 - 0.1.0: Movement system + saving/loding
 - 0.2.0: Inventory + weapons/equipment
@@ -73,6 +73,14 @@ New status effects can be added by:
 - jumping
 - walljumping
 - wallsliding
+
+### Inventory
+
+We also have a Inventory system which supports picking up, dropping and rearanging items (open with e) item usage WIP
+
+### Settings menu
+
+We currently have a settingsmenu with a General (Window settings), SFX/Music and Keybinds (for keybinds) section.
 
 ## Thanks
 - [pixelfranek](https://pixelfranek.itch.io/free-textures-of-light) for the light textures
